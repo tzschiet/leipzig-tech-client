@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
 import faker from 'faker/locale/de'
+import React, { useEffect, useState } from 'react'
+
 import CompanyCardList from '../components/CompanyCardList'
 import { Company } from '../models/Company.model'
 
