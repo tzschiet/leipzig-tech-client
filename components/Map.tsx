@@ -20,11 +20,11 @@ const LocationMap = ({
   })
 
   return (
-    <div>
+    <div className="h-full">
       <MapContainer
         bounds={bounds}
         scrollWheelZoom={false}
-        style={{ width: '100%', height: '500px' }}
+        style={{ width: '100%', height: '100%' }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png"

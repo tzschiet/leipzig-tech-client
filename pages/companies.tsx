@@ -1,3 +1,5 @@
+import 'simplebar/dist/simplebar.min.css'
+
 import faker from 'faker/locale/de'
 import { LatLngExpression } from 'leaflet'
 import dynamic from 'next/dynamic'
@@ -5,6 +7,9 @@ import React, { useEffect, useState } from 'react'
 
 import CompanyCardList from '../components/CompanyCardList'
 import { Company } from '../models/Company.model'
+
+// query to get latlng from address, could be done from backend?
+// https://nominatim.openstreetmap.org/search?format=json&q=ADDRESS
 
 const LocationMap = dynamic(() => import('../components/Map'), {
   ssr: false,
@@ -44,11 +49,13 @@ export default function CompaniesPage(): JSX.Element {
   }
 
   return (
-    <div>
-      <div className="w-full h-96 p-4">
+    <div className="container h-content flex">
+      <div className="w-full h-full overflow-auto">
+        <CompanyCardList companies={companies} onItemClick={handleItemClick} />
+      </div>
+      <div className="w-full h-full px-4 custom-scroll">
         <LocationMap companies={companies} selected={selected} />
       </div>
-      <CompanyCardList companies={companies} onItemClick={handleItemClick} />
     </div>
   )
 }
