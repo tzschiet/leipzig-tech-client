@@ -10,18 +10,20 @@ export default function Index(): JSX.Element {
 
   useEffect(() => {
     setCompanies(
-      Array.from({ length: 5 }, (_, i) => ({
-        id: `${i}`,
-        name: `${faker.company.companyName()} ${faker.company.companySuffix()}`,
-        department: `${faker.commerce.department()}`,
-        logo: `${faker.image.business(48, 48)}`,
-        address: `${faker.address.streetAddress(true)}`,
-      }))
+      Array.from({ length: 5 }, (_, i) => {
+        return {
+          id: `${i}`,
+          name: `${faker.company.companyName()} ${faker.company.companySuffix()}`,
+          department: `${faker.commerce.department()}`,
+          logo: `${faker.image.business(48, 48)}`,
+          address: `${faker.address.streetAddress(true)}`,
+        }
+      })
     )
   }, [])
 
   return (
-    <div>
+    <div className="max-w-5xl mx-auto">
       <div className="text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
           Find your place in the tech community of Leipzig.

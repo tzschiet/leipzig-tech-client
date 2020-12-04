@@ -40,6 +40,7 @@ export default function CompaniesPage(): JSX.Element {
         name: `${faker.company.companyName()} ${faker.company.companySuffix()}`,
         department: `${faker.commerce.department()}`,
         latlng: getRandomLocation(),
+        logo: `${faker.image.business(48, 48)}`,
       }))
     )
   }, [])
@@ -49,7 +50,7 @@ export default function CompaniesPage(): JSX.Element {
   }
 
   return (
-    <div className="container h-content flex">
+    <div className="flex h-content ">
       <div className="w-full h-full overflow-auto">
         <CompanyCardList companies={companies} onItemClick={handleItemClick} />
       </div>
