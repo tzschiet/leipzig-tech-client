@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 
 import CompanyCardList from '../components/CompanyCardList'
 import { Company } from '../models/Company.model'
+import SearchForm from '../components/SearchForm'
 
 // query to get latlng from address, could be done from backend?
 // https://nominatim.openstreetmap.org/search?format=json&q=ADDRESS
@@ -50,12 +51,18 @@ export default function CompaniesPage(): JSX.Element {
   }
 
   return (
-    <div className="flex h-content ">
-      <div className="w-full h-full overflow-auto">
-        <CompanyCardList companies={companies} onItemClick={handleItemClick} />
-      </div>
-      <div className="w-full h-full px-4 custom-scroll">
-        <LocationMap companies={companies} selected={selected} />
+    <div>
+      <SearchForm />
+      <div className="flex h-content">
+        <div className="w-full overflow-auto">
+          <CompanyCardList
+            companies={companies}
+            onItemClick={handleItemClick}
+          />
+        </div>
+        <div className="w-full h-full px-4 custom-scroll">
+          <LocationMap companies={companies} selected={selected} />
+        </div>
       </div>
     </div>
   )
