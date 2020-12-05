@@ -24,7 +24,7 @@ const LocationMap = ({
       <MapContainer
         bounds={bounds}
         scrollWheelZoom={false}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', zIndex: 0 }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png"
