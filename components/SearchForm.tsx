@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { SyntheticEvent, useState } from 'react'
 import Select from 'react-select'
 
 export default function SearchForm(): JSX.Element {
   const [name, setName] = useState<string>('')
-  const [selectedDistrict, setSelectedDistrict] = useState<any>(null)
+  const [selectedDistricts, setSelectedDistricts] = useState<string>('')
 
-  const changeCompanyName = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setName(e.target.value)
+  const handleCompanyNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setName(event.target.value)
+  }
+
+  const handleDistrictSelectionChange = (option: string) => {
+    setSelectedDistricts(option)
   }
 
   const options = [
@@ -19,39 +25,40 @@ export default function SearchForm(): JSX.Element {
   ]
 
   const customStyles = {
-    control: (provided, state) => ({
+    control: (provided: any, state: any) => ({
       ...provided,
       borderRadius: '0.5rem',
       borderColor: state.selectProps.borderColor,
     }),
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
     console.log('name', name)
-    console.log('district', selectedDistrict)
+    console.log('districts', selectedDistricts)
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex max-w-5xl rounded shadow p-4 mb-8 mx-auto justify-between">
         <input
-          className="w-full border rounded-lg pl-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+          className="w-full border rounded-lg pl-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent placeholder-gray-900"
           type="text"
           value={name}
-          onChange={changeCompanyName}
+          onChange={handleCompanyNameChange}
           name="name"
           placeholder="Company Name"
         />
         <Select
           className="w-full mx-4"
           instanceId="select-react"
-          value={selectedDistrict}
+          value={selectedDistricts}
           name="district"
           options={options}
           styles={customStyles}
           placeholder="City Districts..."
-          onChange={setSelectedDistrict}
+          onChange={handleDistrictSelectionChange}
+          isMulti
           isSearchable
         />
         <button

@@ -17,6 +17,7 @@ export default function Index(): JSX.Element {
           department: `${faker.commerce.department()}`,
           logo: `${faker.image.business(48, 48)}`,
           address: `${faker.address.streetAddress(true)}`,
+          latlng: { lat: 0, lng: 0 },
         }
       })
     )
